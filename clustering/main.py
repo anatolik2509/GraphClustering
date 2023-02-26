@@ -18,8 +18,6 @@ def mean_loss(losses: list):
 
 if __name__ == '__main__':
     g = graph_generator.generate()
-    while not nx.is_connected(g):
-        g = graph_generator.generate()
     g = graph_utils.add_random_weights_to_nodes(g, 50, 100)
     g = graph_utils.add_random_weights_to_edges(g, 50, 100)
     partition_fluidc_loses = []

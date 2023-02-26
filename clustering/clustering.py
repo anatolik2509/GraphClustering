@@ -4,8 +4,7 @@ import networkx as nx
 from graph_utils import WEIGHT_LABEL
 
 
-def fluid_communities(graph: nx.Graph, weights: list):
-    max_iter = 100
+def fluid_communities(graph: nx.Graph, weights: list, max_iter=100):
     random = Random()
     k = len(weights)
     total_weight = 0
@@ -25,7 +24,7 @@ def fluid_communities(graph: nx.Graph, weights: list):
         density = __calculate_density(graph, node_to_partitions, volumes)
         max_iter -= 1
     if max_iter == 0:
-        print("WARN")
+        print("WARN, MAX RETRIES EXCEED")
     for node, part in node_to_partitions.items():
         partitions[part].append(node)
     return partitions

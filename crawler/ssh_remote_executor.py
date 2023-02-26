@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import paramiko
 
 from paramiko import SSHClient, Transport
@@ -13,6 +15,9 @@ class SshConfig:
 
 
 class SshRemoteExecutor:
+
+    remote_script_path = "/temp"
+
     def __init__(self, ssh_config: SshConfig):
         self.ssh_config = ssh_config
         self.ssh_client = self.get_client()
@@ -29,7 +34,7 @@ class SshRemoteExecutor:
         with self.ssh_client.open_sftp() as sftp_client:
             sftp_client.put(local_path, remote_path)
 
-    def execute_bash(self, command):
+    def execute_bash(self, command) -> (str, str):
         stdin_raw, stdout_raw, stderr_raw = self.ssh_client.exec_command(command)
 
         stdout = []
@@ -43,7 +48,13 @@ class SshRemoteExecutor:
         del stdin_raw, stdout_raw, stderr_raw
         if stderr:
             print(stderr)
-        return stdout
+        return stdout, stderr
+
+    def execute_script(self, start_command: str, script_path: Path) -> (str, str):
+        remote_path = Path(SshRemoteExecutor.remote_script_path).joinpath(script_path.name)
+        self.execute_bash(f'cd {SshRemoteExecutor.remote_script_path}')
+        self.send_file(str(script_path), str(remote_path))
+        return self.execute_bash(start_command)
 
     def close(self):
         self.ssh_client.close()
