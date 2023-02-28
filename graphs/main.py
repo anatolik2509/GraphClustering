@@ -1,10 +1,12 @@
 import numpy as np
 
-import clustering
+import graphs
 import graph_generator
 import graph_utils
 import networkx as nx
 import kmedoids
+
+from graphs.fluid_clustering import fluid_communities
 
 
 def mean_loss(losses: list):
@@ -29,10 +31,10 @@ if __name__ == '__main__':
         partitions_fluidc = list(partitions_fluidc)
         partition_fluidc_loses.append(graph_utils.clustering_loss(g, partitions_fluidc, clusters_weights))
         # graph_utils.draw_graph(g, partitions_fluidc)
-        partitions_new_fluidc = clustering.fluid_communities(g, clusters_weights)
+        partitions_new_fluidc = fluid_communities(g, clusters_weights)
         partition_new_fluidc_loses.append(graph_utils.clustering_loss(g, partitions_new_fluidc, clusters_weights))
         # graph_utils.draw_graph(g, partitions_new_fluidc)
-        matrix = nx.to_numpy_matrix(g)
+        matrix = nx.to_numpy_array(g)
         matrix[matrix == 0] = 10000
         partitions_pam = [[] for _ in range(4)]
         for i, l in enumerate(kmedoids.pam(matrix, 4).labels):

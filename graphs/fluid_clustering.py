@@ -1,7 +1,7 @@
 from random import Random
 
 import networkx as nx
-from graph_utils import WEIGHT_LABEL
+from graphs.graph_utils import WEIGHT_LABEL
 
 
 def fluid_communities(graph: nx.Graph, weights: list, max_iter=100):

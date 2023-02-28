@@ -1,5 +1,5 @@
-from clustering.clustering import fluid_communities
-from clustering.clustering_algorithm import ClusteringAlgorithm
+from graphs.fluid_clustering import fluid_communities
+from graphs.clustering_algorithm import ClusteringAlgorithm
 
 
 class WeightedFluidClusteringAlgorithm(ClusteringAlgorithm):

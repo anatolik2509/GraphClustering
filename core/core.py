@@ -1,9 +1,9 @@
 from typing import List
 
 import networkx as nx
-import os
+import subprocess
 
-from clustering.clustering_algorithm import ClusteringAlgorithm
+from graphs.clustering_algorithm import ClusteringAlgorithm
 from code_generation.code_generator import CodeGenerator
 from crawler.computing_power_calculator import ComputingPowerCalculator
 from crawler.ssh_remote_executor import SshConfig, SshRemoteExecutor
@@ -21,6 +21,13 @@ class Core:
 
     def execute(self, topology: nx.Graph):
         node_weights = self.computing_power_calculator.calculate(self.ssh_executors)
-        cluster_info = self.clustering_algorithm.clustering(topology, node_weights)
+        clusters = self.clustering_algorithm.clustering(topology, node_weights)
+        cluster_info = {}
+        for node, neurons in enumerate(clusters):
+            for neuron in neurons:
+                cluster_info[neuron] = node
         start_command = self.code_generator.generate_script(topology, cluster_info, self.nodes_configs)
-        os.system(start_command)
+        process = subprocess.Popen(start_command.split(' '),
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE)
+        return process
