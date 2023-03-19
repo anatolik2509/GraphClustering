@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import List
 
 import paramiko
 
@@ -16,7 +17,7 @@ class SshConfig:
 
 class SshRemoteExecutor:
 
-    remote_script_path = "/temp"
+    remote_script_path = "/tmp"
 
     def __init__(self, ssh_config: SshConfig):
         self.ssh_config = ssh_config
@@ -32,9 +33,9 @@ class SshRemoteExecutor:
 
     def send_file(self, local_path, remote_path):
         with self.ssh_client.open_sftp() as sftp_client:
-            sftp_client.put(local_path, remote_path)
+            sftp_client.put(str(local_path), str(remote_path))
 
-    def execute_bash(self, command) -> (str, str):
+    def execute_bash(self, command) -> (List[str], List[str]):
         stdin_raw, stdout_raw, stderr_raw = self.ssh_client.exec_command(command)
 
         stdout = []
@@ -50,11 +51,12 @@ class SshRemoteExecutor:
             print(stderr)
         return stdout, stderr
 
-    def execute_script(self, start_command: str, script_path: Path) -> (str, str):
+    def execute_script(self, start_command: str, script_path: Path) -> (List[str], List[str]):
         remote_path = Path(SshRemoteExecutor.remote_script_path).joinpath(script_path.name)
-        self.execute_bash(f'cd {SshRemoteExecutor.remote_script_path}')
         self.send_file(str(script_path), str(remote_path))
-        return self.execute_bash(start_command)
+        start_command = f'cd {SshRemoteExecutor.remote_script_path};' + start_command + f';rm {remote_path}'
+        stdout, stderr = self.execute_bash(start_command)
+        return stdout, stderr
 
     def close(self):
         self.ssh_client.close()

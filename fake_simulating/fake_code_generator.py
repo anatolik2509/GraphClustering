@@ -1,4 +1,5 @@
 import os
+import pathlib
 from typing import Dict, List
 
 import networkx as nx
@@ -22,21 +23,21 @@ if_rank = """if rank == {rank}:
 for_iter = """for i in range({iters}):
 {body}"""
 sync_if = """if i % {iter_sync} == 0:
-            print("Hit barrier" + str(rank) + " " + str(i))
+            print("Hit barrier, rank = " + str(rank) + ", iter = " + str(i))
             comm.barrier()"""
-send_command = "comm.send({message}, {target})"
-sleep_command = "time.sleep({secs})"
+send_command = "for _ in range({neighbor_weight}): comm.send({message}, {target})"
 recv_command = "comm.recv(source = {source})"
 
+"""a = 31
+for _ in range({iters}):
+    a = (a ** 2) % (10 ** 100000)"""
 
 class FakeCodeGenerator(CodeGenerator):
-    def __init__(self, node_comp_powers):
-        self.node_comp_powers = node_comp_powers
 
     def generate_script(self, topology: nx.Graph, clustering_info: Dict[int, int],
-                        node_configs: List[SshConfig]) -> str:
+                        node_configs: List[SshConfig]) -> (str, pathlib.Path):
         program = start
-        nodes_count = len(self.node_comp_powers)
+        nodes_count = len(node_configs)
         nodes_sim_time = [0.0 for _ in range(nodes_count)]
         for neuron, node in clustering_info.items():
             nodes_sim_time[node] += topology.nodes[neuron][graph_utils.WEIGHT_LABEL]
@@ -49,15 +50,17 @@ class FakeCodeGenerator(CodeGenerator):
             node_to_node[node_i][node_j] += topology.get_edge_data(i, j)[graph_utils.WEIGHT_LABEL]
             node_to_node[node_j][node_i] += topology.get_edge_data(i, j)[graph_utils.WEIGHT_LABEL]
         for node in range(nodes_count):
-            sim_time = nodes_sim_time[node] / self.node_comp_powers[node] / 1000
-            rank_body = (" " * 4 * 2) + sleep_command.format(secs=sim_time) + "\n"
+            sim_time = nodes_sim_time[node]
+            rank_body = (" " * 4 * 2) + "a = 31" + "\n"
+            rank_body += (" " * 4 * 2) + f"for _ in range({int(sim_time)}):" + "\n"
+            rank_body += (" " * 4 * 3) + "a = (a ** 2) % (10 ** 1000)" + "\n"
             rank_body += (" " * 4 * 2) + sync_if.format(iter_sync=10) + "\n"
             for i, neighbor in enumerate(node_to_node[node]):
                 if neighbor < 0.001:
                     continue
-                message = "'" + "A" * int(neighbor) + "'"
+                message = "'" + "A" * 1000 + "'"
                 rank_body += (" " * 4 * 3) + f"message = {message}" + "\n"
-                rank_body += (" " * 4 * 3) + send_command.format(message='message', target=i) + "\n"
+                rank_body += (" " * 4 * 3) + send_command.format(message='message', target=i, neighbor_weight = int(neighbor)) + "\n"
             for i, neighbor in enumerate(node_to_node[node]):
                 if neighbor < 0.001:
                     continue
@@ -66,12 +69,15 @@ class FakeCodeGenerator(CodeGenerator):
             program += if_rank.format(rank=node, body=rank_body)
         with open('out/script.py', 'w') as output_file:
             output_file.write(program)
-        return f'mpirun -np {nodes_count} python3 ./out/script.py'
+        with open('out/rank_file.txt', 'w') as rank_file:
+            for i, node_info in enumerate(node_configs):
+                rank_file.write(f'rank {i}={node_info.host} slots=2\n')
+        return f'mpirun -rf rank_file.txt -np {nodes_count} python3 script.py', pathlib.Path('out/script.py')
 
 
 if __name__ == '__main__':
-    nodes = [10, 10, 10, 10]
-    gen = FakeCodeGenerator(nodes)
+    nodes = [10, 10]
+    gen = FakeCodeGenerator()
     g = graph_generator.generate()
     g = graph_utils.add_random_weights_to_nodes(g, 50, 100)
     g = graph_utils.add_random_weights_to_edges(g, 50, 100)
@@ -80,4 +86,4 @@ if __name__ == '__main__':
     for node, neurons in enumerate(clusters):
         for neuron in neurons:
             cluster_info[neuron] = node
-    gen.generate_script(g, cluster_info, None)
+    gen.generate_script(g, cluster_info, [SshConfig('172.17.0.2'), SshConfig('172.17.0.3')])
