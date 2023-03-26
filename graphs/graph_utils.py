@@ -20,18 +20,22 @@ def add_random_weights_to_edges(graph: nx.Graph, min_weight, max_weight) -> nx.G
     return graph
 
 
-def draw_graph(graph: nx.Graph, partitions: list):
+def draw_graph(graph: nx.Graph, partitions: list = None):
     pos = nx.kamada_kawai_layout(graph)
     node_weights = nx.get_node_attributes(graph, WEIGHT_LABEL)
     colors = ['green', 'blue', 'yellow', 'red']
     node_colors = [''] * len(graph.nodes)
-    for i, part in enumerate(partitions):
-        for node in part:
-            node_colors[node] = colors[i]
+    if partitions is not None:
+        for i, part in enumerate(partitions):
+            for node in part:
+                node_colors[node] = colors[i]
     for node in node_weights:
         node_weights[node] = f"{node} ({node_weights[node]})"
     edge_weights = nx.get_edge_attributes(graph, WEIGHT_LABEL)
-    nx.draw_networkx_nodes(graph, pos, node_size=600, node_color=node_colors)
+    if partitions is not None:
+        nx.draw_networkx_nodes(graph, pos, node_size=600, node_color=node_colors)
+    else:
+        nx.draw_networkx_nodes(graph, pos, node_size=600)
     nx.draw_networkx_labels(graph, pos, labels=node_weights, font_size=9)
     nx.draw_networkx_edges(graph, pos)
     nx.draw_networkx_edge_labels(graph, pos, edge_labels=edge_weights, font_size=7)
@@ -39,6 +43,7 @@ def draw_graph(graph: nx.Graph, partitions: list):
 
 
 def clustering_loss(graph: nx.Graph, clusters, cluster_target_weights):
+    cluster_target_weights_sum = sum(cluster_target_weights)
     cluster_weights = list()
     weights_sum = 0
     node_to_clusters = {}
@@ -53,7 +58,7 @@ def clustering_loss(graph: nx.Graph, clusters, cluster_target_weights):
 
     node_weight_lose = 0
     for i, cluster_weight in enumerate(cluster_weights):
-        node_weight_lose += abs(cluster_target_weights[i] - cluster_weight / weights_sum)
+        node_weight_lose += abs(cluster_target_weights[i] / cluster_target_weights_sum - cluster_weight / weights_sum)
 
     edge_weights_loss = 0
     for edge in graph.edges:

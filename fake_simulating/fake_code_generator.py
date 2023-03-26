@@ -32,7 +32,12 @@ recv_command = "comm.recv(source = {source})"
 for _ in range({iters}):
     a = (a ** 2) % (10 ** 100000)"""
 
+
 class FakeCodeGenerator(CodeGenerator):
+
+    def __init__(self, computes_divider=1, sending_divider=1):
+        self.computing_divider = computes_divider
+        self.sending_divider = sending_divider
 
     def generate_script(self, topology: nx.Graph, clustering_info: Dict[int, int],
                         node_configs: List[SshConfig]) -> (str, pathlib.Path):
@@ -50,17 +55,17 @@ class FakeCodeGenerator(CodeGenerator):
             node_to_node[node_i][node_j] += topology.get_edge_data(i, j)[graph_utils.WEIGHT_LABEL]
             node_to_node[node_j][node_i] += topology.get_edge_data(i, j)[graph_utils.WEIGHT_LABEL]
         for node in range(nodes_count):
-            sim_time = nodes_sim_time[node]
+            sim_time = nodes_sim_time[node] / self.computing_divider
             rank_body = (" " * 4 * 2) + "a = 31" + "\n"
             rank_body += (" " * 4 * 2) + f"for _ in range({int(sim_time)}):" + "\n"
-            rank_body += (" " * 4 * 3) + "a = (a ** 2) % (10 ** 1000)" + "\n"
+            rank_body += (" " * 4 * 3) + "a = (a ** 2) % (10 ** 2000)" + "\n"
             rank_body += (" " * 4 * 2) + sync_if.format(iter_sync=10) + "\n"
             for i, neighbor in enumerate(node_to_node[node]):
                 if neighbor < 0.001:
                     continue
                 message = "'" + "A" * 1000 + "'"
                 rank_body += (" " * 4 * 3) + f"message = {message}" + "\n"
-                rank_body += (" " * 4 * 3) + send_command.format(message='message', target=i, neighbor_weight = int(neighbor)) + "\n"
+                rank_body += (" " * 4 * 3) + send_command.format(message='message', target=i, neighbor_weight=int(neighbor / self.sending_divider + 1)) + "\n"
             for i, neighbor in enumerate(node_to_node[node]):
                 if neighbor < 0.001:
                     continue

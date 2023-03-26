@@ -26,15 +26,12 @@ class Core:
 
     def execute(self, topology: nx.Graph):
         node_weights = self.computing_power_calculator.calculate(self.ssh_executors)
-        print(f"Node weights = {node_weights}")
         clusters = self.clustering_algorithm.clustering(topology, node_weights)
         cluster_info = {}
         for node, neurons in enumerate(clusters):
             for neuron in neurons:
                 cluster_info[neuron] = node
         start_command, file_path = self.code_generator.generate_script(topology, cluster_info, self.nodes_configs)
-        print(file_path)
-        print(start_command)
         self._send_scripts_to_nodes(file_path)
         process = subprocess.Popen(start_command.split(' '),
                                    cwd=str(file_path.parent),

@@ -7,6 +7,8 @@ import networkx as nx
 import kmedoids
 
 from graphs.fluid_clustering import fluid_communities
+from graphs.spin_glass_clustering_algorithm import SpinGlassClusteringAlgorithm
+from graphs.weighted_fluid_clustering_algorithm import WeightedFluidClusteringAlgorithm
 
 
 def mean_loss(losses: list):
@@ -19,29 +21,21 @@ def mean_loss(losses: list):
 
 
 if __name__ == '__main__':
-    g = graph_generator.generate()
+    g = graph_generator.generate(20, 30)
     g = graph_utils.add_random_weights_to_nodes(g, 50, 100)
     g = graph_utils.add_random_weights_to_edges(g, 50, 100)
     partition_fluidc_loses = []
-    partition_new_fluidc_loses = []
-    partition_pam_loses = []
+    partition_spin_glass_loses = []
+    wf = WeightedFluidClusteringAlgorithm()
+    sg = SpinGlassClusteringAlgorithm()
     for _ in range(1000):
-        clusters_weights = [0.25, 0.25, 0.25, 0.25]
-        partitions_fluidc = nx.community.asyn_fluidc(g, 4)
+        clusters_weights = [1.0, 0.5, 0.5]
+        partitions_fluidc = wf.clustering(g, clusters_weights)
         partitions_fluidc = list(partitions_fluidc)
         partition_fluidc_loses.append(graph_utils.clustering_loss(g, partitions_fluidc, clusters_weights))
         # graph_utils.draw_graph(g, partitions_fluidc)
-        partitions_new_fluidc = fluid_communities(g, clusters_weights)
-        partition_new_fluidc_loses.append(graph_utils.clustering_loss(g, partitions_new_fluidc, clusters_weights))
+        partitions_spin_glass = sg.clustering(g, clusters_weights)
+        partition_spin_glass_loses.append(graph_utils.clustering_loss(g, partitions_spin_glass, clusters_weights))
         # graph_utils.draw_graph(g, partitions_new_fluidc)
-        matrix = nx.to_numpy_array(g)
-        matrix[matrix == 0] = 10000
-        partitions_pam = [[] for _ in range(4)]
-        for i, l in enumerate(kmedoids.pam(matrix, 4).labels):
-            partitions_pam[l].append(i)
-        # graph_utils.draw_graph(g, partitions_pam)
-        partition_pam_loses.append(graph_utils.clustering_loss(g, partitions_pam, clusters_weights))
-
     print(mean_loss(partition_fluidc_loses))
-    print(mean_loss(partition_new_fluidc_loses))
-    print(mean_loss(partition_pam_loses))
+    print(mean_loss(partition_spin_glass_loses))
