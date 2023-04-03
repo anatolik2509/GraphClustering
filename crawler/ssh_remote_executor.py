@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from typing import List
 
@@ -34,6 +35,8 @@ class SshRemoteExecutor:
     def send_file(self, local_path, remote_path):
         with self.ssh_client.open_sftp() as sftp_client:
             sftp_client.put(str(local_path), str(remote_path))
+            permissions = os.stat(local_path).st_mode
+            sftp_client.chmod(str(remote_path), permissions)
 
     def execute_bash(self, command) -> (List[str], List[str]):
         stdin_raw, stdout_raw, stderr_raw = self.ssh_client.exec_command(command)

@@ -31,10 +31,11 @@ class Core:
         for node, neurons in enumerate(clusters):
             for neuron in neurons:
                 cluster_info[neuron] = node
-        start_command, file_path = self.code_generator.generate_script(topology, cluster_info, self.nodes_configs)
-        self._send_scripts_to_nodes(file_path)
+        start_command, file_paths = self.code_generator.generate_script(topology, cluster_info, self.nodes_configs)
+        for file_path in file_paths:
+            self._send_scripts_to_nodes(file_path)
         process = subprocess.Popen(start_command.split(' '),
-                                   cwd=str(file_path.parent),
+                                   cwd=str(file_paths[0].parent),
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE)
         return process

@@ -28,14 +28,11 @@ def test_algorithm(algorithm, nodes, edges, compute_divider, send_divider, file_
 
 
 if __name__ == '__main__':
-    config_set = [[20, 30, 10, 50],
-                  [50, 80, 20, 100],
-                  [100, 200, 40, 200],
-                  [300, 900, 80, 500]]
+    config_set = [[300, 900, 80, 500]]
     algorithm_names = ['weighted_fluid', 'fluid', 'fast_greedy', 'walktrap', 'spin_glass']
     algorithm_objects = [WeightedFluidClusteringAlgorithm(), FluidClusteringAlgorithm(), FastGreedyClusteringAlgorithm(),
                          WalktrapClusteringAlgorithm(), SpinGlassClusteringAlgorithm()]
     for algorithm_object, algorithm_name in zip(algorithm_objects, algorithm_names):
         for config in config_set:
-            file = f'res/1_1_1/{algorithm_name}_{config[0]}_{config[1]}.csv'
+            file = f'res/05_05_1/{algorithm_name}_{config[0]}_{config[1]}.csv'
             test_algorithm(algorithm_object, config[0], config[1], config[2], config[3], file)

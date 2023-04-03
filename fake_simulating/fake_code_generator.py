@@ -8,8 +8,7 @@ from graphs import fluid_clustering
 from graphs import graph_generator
 from graphs import graph_utils
 from code_generation.code_generator import CodeGenerator
-from crawler.ssh_remote_executor import SshConfig
-
+from crawler.ssh_remote_executor import SshConfig, SshRemoteExecutor
 
 start = """
 from mpi4py import MPI
@@ -40,7 +39,7 @@ class FakeCodeGenerator(CodeGenerator):
         self.sending_divider = sending_divider
 
     def generate_script(self, topology: nx.Graph, clustering_info: Dict[int, int],
-                        node_configs: List[SshConfig]) -> (str, pathlib.Path):
+                        node_configs: List[SshConfig]) -> (str, List[pathlib.Path]):
         program = start
         nodes_count = len(node_configs)
         nodes_sim_time = [0.0 for _ in range(nodes_count)]
@@ -77,7 +76,7 @@ class FakeCodeGenerator(CodeGenerator):
         with open('out/rank_file.txt', 'w') as rank_file:
             for i, node_info in enumerate(node_configs):
                 rank_file.write(f'rank {i}={node_info.host} slots=2\n')
-        return f'mpirun -rf rank_file.txt -np {nodes_count} python3 script.py', pathlib.Path('out/script.py')
+        return f'mpirun -rf rank_file.txt -np {nodes_count} python3 script.py', [pathlib.Path('out/script.py')]
 
 
 if __name__ == '__main__':
@@ -91,4 +90,7 @@ if __name__ == '__main__':
     for node, neurons in enumerate(clusters):
         for neuron in neurons:
             cluster_info[neuron] = node
-    gen.generate_script(g, cluster_info, [SshConfig('172.17.0.2'), SshConfig('172.17.0.3')])
+    gen.generate_script(g, cluster_info,
+                        list(map(lambda config: SshRemoteExecutor(config),
+                                 [SshConfig('172.17.0.2'), SshConfig('172.17.0.3')]))
+                        )
