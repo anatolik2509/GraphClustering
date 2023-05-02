@@ -6,15 +6,8 @@ import networkx as nx
 
 from code_generation.code_generator import CodeGenerator
 from crawler.ssh_remote_executor import SshRemoteExecutor, SshConfig
+from esrn_simulating.esrn_topology_constructor import *
 from graphs.weighted_fluid_clustering_algorithm import WeightedFluidClusteringAlgorithm
-
-NUCLEUS_NAME_LABEL = 'nucleus_name'
-NEURONS_COUNT_LABEL = 'nucleus_count_name'
-NUCLEUS_TYPE_LABEL = 'nucleus_type'
-
-SYNAPSE_DELAY_LABEL = 'delay'
-SYNAPSE_OUTDEGREE_LABEL = 'outdegree'
-SYNAPSE_WEIGHT_LABEL = 'syn_weight'
 
 
 class EsrnCodeGenerator(CodeGenerator):
@@ -42,18 +35,18 @@ class EsrnCodeGenerator(CodeGenerator):
                 hosts_list.append(str(clustering_info[node]))
             topology_file.write(' '.join(hosts_list) + '\n')
         shutil.copy(pathlib.Path(__file__).parent.joinpath('bin/mini_gras'), pathlib.Path('out/mini_gras'))
-        return f'mpirun -rf rank_file.txt -np {len(node_configs)} ./mini_gras topology.txt', \
+        return f'mpirun -rf rank_file.txt -np {len(node_configs)} ./mini_gras topology.txt 1000', \
             [pathlib.Path('out/mini_gras'), pathlib.Path('out/topology.txt')]
 
 
-if __name__ == '__main__':
-    topology = nx.DiGraph()
-    topology.add_node(0, nucleus_name='1', nucleus_count_name=4, nucleus_type=1, weight=4)
-    topology.add_node(1, nucleus_name='2', nucleus_count_name=4, nucleus_type=1, weight=4)
-    topology.add_node(2, nucleus_name='g', nucleus_count_name=1, nucleus_type=0, weight=1)
-    topology.add_edge(0, 1, delay=10, outdegree=4, syn_weight=10000, weight=16)
-    topology.add_edge(1, 0, delay=10, outdegree=4, syn_weight=10000, weight=16)
-    topology.add_edge(2, 1, delay=10, outdegree=4, syn_weight=10000, weight=4)
+def run_reflect_arc():
+    add_nucleus('1', 10)
+    add_nucleus('2', 10)
+    add_nucleus('g', 1, 0)
+    add_synapse('1', '2', 15, 5, 10000)
+    add_synapse('2', '1', 15, 5, 10000)
+    add_synapse('g', '2', 15, 5, 10000)
+    topology = build()
     generator = EsrnCodeGenerator()
     clustering_info = {0: 0, 1: 1, 2: 0}
     generator.generate_script(topology, clustering_info, [SshConfig('host'), SshConfig('host2')])

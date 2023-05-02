@@ -8,8 +8,17 @@ from graphs import graph_generator
 class FastGreedyClusteringAlgorithm(ClusteringAlgorithm):
 
     def clustering(self, topology, node_weights):
-        ig: Graph = Graph.from_networkx(topology)
-        edge_weights = [topology.edges[e][graph_utils.WEIGHT_LABEL] for e in ig.get_edgelist()]
+        if topology.is_directed():
+            ig: Graph = Graph.from_networkx(topology.to_undirected())
+        else:
+            ig: Graph = Graph.from_networkx(topology)
+        edge_weights = []
+        for u, v in ig.get_edgelist():
+            in_edge = topology.edges.get((u, v), None)
+            out_edge = topology.edges.get((v, u), None)
+            in_edge_weight = in_edge[graph_utils.WEIGHT_LABEL] if in_edge is not None else 0
+            out_edge_weight = out_edge[graph_utils.WEIGHT_LABEL] if out_edge is not None else 0
+            edge_weights.append(in_edge_weight + out_edge_weight)
         clusters = [[] for _ in range(len(node_weights))]
         res = ig.community_fastgreedy(edge_weights).as_clustering(len(node_weights))
         for i, cluster in enumerate(res.membership):

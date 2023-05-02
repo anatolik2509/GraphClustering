@@ -33,12 +33,12 @@ def draw_graph(graph: nx.Graph, partitions: list = None):
         node_weights[node] = f"{node} ({node_weights[node]})"
     edge_weights = nx.get_edge_attributes(graph, WEIGHT_LABEL)
     if partitions is not None:
-        nx.draw_networkx_nodes(graph, pos, node_size=600, node_color=node_colors)
+        nx.draw_networkx_nodes(graph, pos, node_size=100, node_color=node_colors)
     else:
-        nx.draw_networkx_nodes(graph, pos, node_size=600)
-    nx.draw_networkx_labels(graph, pos, labels=node_weights, font_size=9)
+        nx.draw_networkx_nodes(graph, pos, node_size=100)
+    # nx.draw_networkx_labels(graph, pos, labels=node_weights, font_size=9)
     nx.draw_networkx_edges(graph, pos)
-    nx.draw_networkx_edge_labels(graph, pos, edge_labels=edge_weights, font_size=7)
+    # nx.draw_networkx_edge_labels(graph, pos, edge_labels=edge_weights, font_size=7)
     plt.show()
 
 

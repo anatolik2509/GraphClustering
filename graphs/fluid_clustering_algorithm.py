@@ -7,7 +7,10 @@ from graphs.clustering_algorithm import ClusteringAlgorithm
 class FluidClusteringAlgorithm(ClusteringAlgorithm):
 
     def clustering(self, topology, node_weights):
-        clusters = list(nx.community.asyn_fluidc(topology, len(node_weights)))
+        if not topology.is_directed():
+            clusters = list(nx.community.asyn_fluidc(topology, len(node_weights)))
+        else:
+            clusters = list(nx.community.asyn_fluidc(topology.to_undirected(), len(node_weights)))
         clusters = [list(cluster) for cluster in clusters]
         return clusters
 

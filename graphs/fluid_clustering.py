@@ -1,6 +1,9 @@
+import random
 from random import Random
 
 import networkx as nx
+from networkx import all_neighbors
+
 from graphs.graph_utils import WEIGHT_LABEL
 
 
@@ -40,6 +43,7 @@ def __equals_partitions(old_partitions: dict, new_partitions: dict):
 def __fluid_iter(graph: nx.Graph, density: list, node_to_partitions: dict, k):
     nodes = [node for node in graph.nodes]
     new_partitions = {}
+    random.shuffle(nodes)
     for node in nodes:
         part = __find_closest_partition(graph, node, density, node_to_partitions, k)
         if part == -1:
@@ -50,9 +54,9 @@ def __fluid_iter(graph: nx.Graph, density: list, node_to_partitions: dict, k):
 
 
 def __find_closest_partition(graph: nx.Graph, node, density: list, node_to_partitions: dict, k):
-    neighbors = [n for n in graph.neighbors(node)]
+    neighbors = set(all_neighbors(graph, node))
     edges_weights = get_neighbors_edges_weights(graph, node, neighbors)
-    neighbors.append(node)
+    neighbors.add(node)
     partitions_pressure = {part: 0 for part in range(k)}
     at_least_one_partition_found = False
     for neighbor in neighbors:
@@ -69,7 +73,11 @@ def __find_closest_partition(graph: nx.Graph, node, density: list, node_to_parti
 def get_neighbors_edges_weights(graph: nx.Graph, node, neighbors):
     edge_to_weights = {}
     for neighbor in neighbors:
-        edge_to_weights[(node, neighbor)] = graph.get_edge_data(node, neighbor)[WEIGHT_LABEL]
+        edge_from = graph.get_edge_data(node, neighbor)
+        edge_in = graph.get_edge_data(neighbor, node)
+        edge_from_weight = edge_from[WEIGHT_LABEL] if edge_from is not None else 0
+        edge_in_weight = edge_in[WEIGHT_LABEL] if edge_in is not None else 0
+        edge_to_weights[(node, neighbor)] = edge_from_weight + edge_in_weight
     edge_to_weights[(node, node)] = max(edge_to_weights.values())
     return edge_to_weights
 
@@ -83,6 +91,7 @@ def __fix_destroyed_partition(new_partitions, old_partitions, k):
             for node, old_part in old_partitions.items():
                 if part == old_part:
                     new_partitions[node] = old_part
+                    break
 
 
 def __calculate_density(graph: nx.Graph, node_to_partitions: dict, volumes):
@@ -90,6 +99,10 @@ def __calculate_density(graph: nx.Graph, node_to_partitions: dict, volumes):
     partitions_to_weight = {part: 0 for part in range(len(volumes))}
     for node, part in node_to_partitions.items():
         partitions_to_weight[part] += graph.nodes[node][WEIGHT_LABEL]
+    for edge in graph.edges:
+        if edge[0] in node_to_partitions and edge[1] in node_to_partitions:
+            if node_to_partitions[edge[0]] == node_to_partitions[edge[1]]:
+                partitions_to_weight[node_to_partitions[edge[0]]] += graph.edges[edge][WEIGHT_LABEL]
     for part, weight in partitions_to_weight.items():
         density[part] = volumes[part] / weight
     return density

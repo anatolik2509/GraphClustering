@@ -6,21 +6,20 @@ from graphs import graph_generator, graph_utils
 from graphs.graph_utils import WEIGHT_LABEL
 
 
-def run_test(core: Core, graph_nodes: int, graph_edges: int, tries: int) -> (List[float], List[float]):
+def run_test(core: Core, topology, tries: int) -> (List[float], List[float]):
     elapsed_times = []
     sim_elapsed_times = []
     for i in range(tries):
-        g = graph_generator.generate(graph_nodes, graph_edges)
-        g = graph_utils.add_random_weights_to_nodes(g, 50, 100)
-        g = graph_utils.add_random_weights_to_edges(g, 50, 100)
+        g = topology
         start_time = time.time()
-        try:
-            process = core.execute(g)
-            sim_start_time = time.time()
-            process.wait()
-        except:
-            print("DAMN IT, SIMULATION DOESN'T WORK!!! WHO NEEDS IT ANYWAY!!!")
-            continue
+        process = core.execute(g)
+        sim_start_time = time.time()
+        stdout = process.stdout
+        while True:
+            line = stdout.readline()
+            if not line:
+                break
+            # print("out: ", line.decode('utf-8').rstrip('\n'), sep='')process.wait(60)
         finish_time = time.time()
         elapsed_time = round(finish_time - start_time, 5)
         sim_elapsed_time = round(finish_time - sim_start_time, 5)
