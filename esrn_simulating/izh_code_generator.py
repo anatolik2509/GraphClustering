@@ -10,7 +10,7 @@ from esrn_simulating.esrn_topology_constructor import *
 from graphs.weighted_fluid_clustering_algorithm import WeightedFluidClusteringAlgorithm
 
 
-class EsrnCodeGenerator(CodeGenerator):
+class IzhCodeGenerator(CodeGenerator):
 
     def __init__(self, iterations=1000):
         self.iterations = iterations
@@ -37,21 +37,6 @@ class EsrnCodeGenerator(CodeGenerator):
             for node in range(len(topology.nodes)):
                 hosts_list.append(str(clustering_info[node]))
             topology_file.write(' '.join(hosts_list) + '\n')
-        shutil.copy(pathlib.Path(__file__).parent.joinpath('bin/mini_gras_esrn'), pathlib.Path('out/mini_gras_esrn'))
-        return f'mpirun -rf rank_file.txt -np {len(node_configs)} ./mini_gras_esrn topology.txt {self.iterations}', \
-            [pathlib.Path('out/mini_gras_esrn'), pathlib.Path('out/topology.txt')]
-
-
-def run_reflect_arc():
-    add_nucleus('1', 10)
-    add_nucleus('2', 10)
-    add_nucleus('g', 1, 0)
-    add_synapse('1', '2', 15, 5, 10000)
-    add_synapse('2', '1', 15, 5, 10000)
-    add_synapse('g', '2', 15, 5, 10000)
-    topology = build()
-    generator = EsrnCodeGenerator()
-    clustering_info = {0: 0, 1: 1, 2: 0}
-    generator.generate_script(topology, clustering_info, [SshConfig('host'), SshConfig('host2')])
-    alg = WeightedFluidClusteringAlgorithm()
-    print(alg.clustering(topology, [1, 1]))
+        shutil.copy(pathlib.Path(__file__).parent.joinpath('bin/mini_gras_izh'), pathlib.Path('out/mini_gras_izh'))
+        return f'mpirun -rf rank_file.txt -np {len(node_configs)} ./mini_gras_izh topology.txt {self.iterations}', \
+            [pathlib.Path('out/mini_gras_izh'), pathlib.Path('out/topology.txt')]

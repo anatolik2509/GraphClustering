@@ -220,11 +220,13 @@ def create_reflect_arc():
 if __name__ == '__main__':
     topology = create_reflect_arc()
     configs = [SshConfig('172.17.0.2', user='anatoly', password=''),
-               SshConfig('172.17.0.3', user='anatoly', password='')]
+               SshConfig('172.17.0.3', user='anatoly', password=''),
+               SshConfig('172.17.0.4', user='anatoly', password='')]
 
-    clustering_algorithm = WeightedFluidClusteringAlgorithm()
+    clustering_algorithm = WalktrapClusteringAlgorithm()
+    # clustering_algorithm = WeightedFluidClusteringAlgorithm()
     computing_power_calculator = DockerPowerCalculator()
-    code_generator = EsrnCodeGenerator()
+    code_generator = EsrnCodeGenerator(1000)
     core = Core(configs, clustering_algorithm, code_generator, computing_power_calculator)
     process = core.execute(topology)
     print('starting')
@@ -235,9 +237,9 @@ if __name__ == '__main__':
         line = stdout.readline()
         if not line:
             break
-        lines.append(line.decode('utf-8').rstrip('\n'))
+        print(line.decode('utf-8').rstrip('\n'))
     finish = time.time()
-    print(finish - start, ' sec.')
-    data = to_data_set(lines, topology, core.cluster_info)
-    name = 'iIP_E'
-    draw_nuclei(data[name], name)
+    print(finish - start, 'sec.')
+    # data = to_data_set(lines, topology, core.cluster_info)
+    # nuclei_name = 'iIP_E'
+    # draw_nuclei(data[nuclei_name], nuclei_name)

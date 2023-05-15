@@ -30,7 +30,7 @@ class Core:
         node_weights = self.computing_power_calculator.calculate(self.ssh_executors)
         clusters = self.clustering_algorithm.clustering(topology, node_weights)
         # print(graphs.graph_utils.clustering_loss(topology, clusters, node_weights))
-        # graphs.graph_utils.draw_graph(topology, clusters)
+        graphs.graph_utils.draw_graph(topology, clusters)
         self.cluster_info = {}
         for node, neurons in enumerate(clusters):
             for neuron in neurons:

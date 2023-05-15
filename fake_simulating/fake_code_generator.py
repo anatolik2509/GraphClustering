@@ -55,6 +55,11 @@ class FakeCodeGenerator(CodeGenerator):
             node_to_node[node_j][node_i] += topology.get_edge_data(i, j)[graph_utils.WEIGHT_LABEL]
         for node in range(nodes_count):
             sim_time = nodes_sim_time[node] / self.computing_divider
+            for i, j in topology.edges:
+                node_i = clustering_info[i]
+                node_j = clustering_info[j]
+                if node_i == node and node_j == node:
+                    sim_time += topology.get_edge_data(i, j)[graph_utils.WEIGHT_LABEL] / self.computing_divider
             rank_body = (" " * 4 * 2) + "a = 31" + "\n"
             rank_body += (" " * 4 * 2) + f"for _ in range({int(sim_time)}):" + "\n"
             rank_body += (" " * 4 * 3) + "a = (a ** 2) % (10 ** 2000)" + "\n"

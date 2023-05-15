@@ -11,7 +11,7 @@ def to_data_set(lines: List[str], topology: nx.Graph, clustering_info: Dict[int,
     for line in lines:
         host, step, nucleus_id, v = line.split()
         name = topology.nodes[int(nucleus_id)]['nucleus_name']
-        result[name].insert(int(step), int(v))
+        result[name].insert(int(step), float(v))
     return result
 
 
