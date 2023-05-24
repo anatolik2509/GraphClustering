@@ -26,8 +26,6 @@ def fluid_communities(graph: nx.Graph, weights: list, max_iter=100):
         node_to_partitions = __fluid_iter(graph, density, node_to_partitions, k)
         density = __calculate_density(graph, node_to_partitions, volumes)
         max_iter -= 1
-    if max_iter == 0:
-        print("WARN, MAX RETRIES EXCEED")
     for node, part in node_to_partitions.items():
         partitions[part].append(node)
     return partitions
@@ -91,6 +89,7 @@ def __fix_destroyed_partition(new_partitions, old_partitions, k):
             for node, old_part in old_partitions.items():
                 if part == old_part:
                     new_partitions[node] = old_part
+                    __fix_destroyed_partition(new_partitions, old_partitions, k)
                     break
 
 

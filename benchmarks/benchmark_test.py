@@ -20,6 +20,7 @@ def run_test(core: Core, topology, tries: int) -> (List[float], List[float], Lis
             line = stdout.readline()
             if not line:
                 break
+            # print(line.decode('utf-8').rstrip('\n'))
             data.append(line.decode('utf-8').rstrip('\n'))
         finish_time = time.time()
         elapsed_time = round(finish_time - start_time, 5)

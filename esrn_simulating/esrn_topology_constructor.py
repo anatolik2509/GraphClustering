@@ -38,3 +38,8 @@ def build():
                           syn_weight=synapse[SYNAPSE_WEIGHT_LABEL],
                           weight=weight)
     return topology
+
+
+def clean():
+    nucleus.clear()
+    synapses.clear()

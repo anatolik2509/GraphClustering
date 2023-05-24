@@ -17,8 +17,7 @@ def test_algorithm(algorithm, topology, file_name, logs_file):
     print(f'Running test for {algorithm.__class__.__name__}')
     tries = 50
     configs = [SshConfig('172.17.0.2', user='anatoly', password=''),
-               SshConfig('172.17.0.3', user='anatoly', password=''),
-               SshConfig('172.17.0.4', user='anatoly', password='')]
+               SshConfig('172.17.0.3', user='anatoly', password='')]
 
     computing_power_calculator = DockerPowerCalculator()
     code_generator = EsrnCodeGenerator()
@@ -34,6 +33,6 @@ if __name__ == '__main__':
     algorithm_objects = [WeightedFluidClusteringAlgorithm(), FluidClusteringAlgorithm(), SpinGlassClusteringAlgorithm(),
                          FastGreedyClusteringAlgorithm(), WalktrapClusteringAlgorithm()]
     for algorithm_object, algorithm_name in zip(algorithm_objects, algorithm_names):
-        file = f'res/1_1_1/{algorithm_name}_esrn_reflect_arc.csv'
-        log_file = f'res/1_1_1/{algorithm_name}_esrn_reflect_arc.txt'
+        file = f'res/05_1/{algorithm_name}_esrn_reflect_arc.csv'
+        log_file = f'res/05_1/{algorithm_name}_esrn_reflect_arc.txt'
         test_algorithm(algorithm_object, create_reflect_arc(), file, log_file)

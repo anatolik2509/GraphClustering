@@ -19,23 +19,25 @@ def mean_loss(losses: list):
         edge_sum += loss[1]
     return node_sum / len(losses), edge_sum / len(losses)
 
+# (0.09149789662037135, 308.5718)
+# (0.10719511048425026, 435.867)
+
 
 if __name__ == '__main__':
     g = graph_generator.generate(20, 30)
     g = graph_utils.add_random_weights_to_nodes(g, 50, 100)
     g = graph_utils.add_random_weights_to_edges(g, 50, 100)
     partition_fluidc_loses = []
-    partition_spin_glass_loses = []
     wf = WeightedFluidClusteringAlgorithm()
-    sg = SpinGlassClusteringAlgorithm()
-    for _ in range(1000):
-        clusters_weights = [1.0, 0.5, 0.5]
+    for _ in range(10000):
+        g = graph_generator.generate(20, 30)
+        g = graph_utils.add_random_weights_to_nodes(g, 50, 100)
+        g = graph_utils.add_random_weights_to_edges(g, 50, 100)
+
+        clusters_weights = [1.0, 0.25]
         partitions_fluidc = wf.clustering(g, clusters_weights)
         partitions_fluidc = list(partitions_fluidc)
         partition_fluidc_loses.append(graph_utils.clustering_loss(g, partitions_fluidc, clusters_weights))
         # graph_utils.draw_graph(g, partitions_fluidc)
-        partitions_spin_glass = sg.clustering(g, clusters_weights)
-        partition_spin_glass_loses.append(graph_utils.clustering_loss(g, partitions_spin_glass, clusters_weights))
         # graph_utils.draw_graph(g, partitions_new_fluidc)
     print(mean_loss(partition_fluidc_loses))
-    print(mean_loss(partition_spin_glass_loses))
