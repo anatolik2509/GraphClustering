@@ -33,16 +33,16 @@ if __name__ == '__main__':
                   [300, 900]]
     folders = ['1_1_1', '05_1', '05_05_1']
     algorithms = ['weighted fluid', 'fluid', 'spin glass', 'fast greedy', 'walktrap']
-    folder = '05_1'
-    files = [f'res/{folder}/weighted_fluid_esrn_reflect_arc.csv',
-             f'res/{folder}/fluid_esrn_reflect_arc.csv',
-             f'res/{folder}/spinglass_esrn_reflect_arc.csv',
-             f'res/{folder}/fast_greedy_esrn_reflect_arc.csv',
-             f'res/{folder}/walktrap_esrn_reflect_arc.csv',
+    folder = '1_1_1'
+    files = [f'res/{folder}/weighted_fluid_reflect_arc.csv',
+             f'res/{folder}/fluid_reflect_arc.csv',
+             f'res/{folder}/spinglass_reflect_arc.csv',
+             f'res/{folder}/fast_greedy_reflect_arc.csv',
+             f'res/{folder}/walktrap_reflect_arc.csv',
              ]
-    plot_title = f"Simulation time (cpu1=1.0, cpu2=0.5, reflect arc, ESRN model)"
+    plot_title = f"Simulation time (cpu1=1.0, cpu2=1.0, cpu3=1.0, reflect arc, \nIzhikevich model)"
     compare_sym_times(files, algorithms, plot_title)
-    plt.savefig(f'fig/{folder}__esrn_reflect_arc.png')
+    plt.savefig(f'fig/{folder}__izh_reflect_arc.png')
     # for folder in folders:
     #     for config in config_set:
     #         files = [f'res/{folder}/weighted_fluid_{config[0]}_{config[1]}.csv',

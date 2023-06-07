@@ -33,9 +33,12 @@ def visualize(file_name):
     x, y, z = read_data(file_name)
 
     ax.plot_surface(x, y, z, cmap='viridis', edgecolor='green')
-
-    plt.show()
+    ax.set_xlabel('hosts')
+    ax.set_ylabel('vertexes')
+    ax.set_zlabel('time')
+    ax.set_title('Simulation time (ESRN)')
+    plt.savefig(f'fig/3d_plot_esrn.png', dpi=300)
 
 
 if __name__ == '__main__':
-    visualize('res/3d/data.csv')
+    visualize('res/3d/data_esrn.csv')

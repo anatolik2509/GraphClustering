@@ -1,0 +1,600 @@
+953760
+72
+[1] Neurons in container 1354, synapses num 188500, virtual synapses: 57000
+Timing: time = 0.387
+[0] Neurons in container 10157, synapses num 302150, virtual synapses: 100500
+[2] Neurons in container 12333, synapses num 330850, virtual synapses: 89300
+0 sim 1.07352
+0 wait 1.73401
+2 sim 1.04259
+2 wait 1.69336
+1 sim 0.755583
+1 wait 2.1264
+953760
+72
+[1] Neurons in container 10625, synapses num 364150, virtual synapses: 101800
+Timing: time = 0.399
+[0] Neurons in container 1135, synapses num 133150, virtual synapses: 59350
+[2] Neurons in container 12084, synapses num 324200, virtual synapses: 83350
+1 sim 1.63921
+1 wait 1.27118
+2 sim 1.49968
+2 wait 1.20926
+0 sim 0.616227
+0 wait 2.30062
+953760
+72
+[1] Neurons in container 1476, synapses num 203300, virtual synapses: 94050
+Timing: time = 0.360
+[0] Neurons in container 11817, synapses num 312300, virtual synapses: 85300
+[2] Neurons in container 10551, synapses num 305900, virtual synapses: 90900
+1 sim 0.707848
+1 wait 2.41636
+2 sim 1.12461
+2 wait 1.82716
+0 sim 1.13328
+0 wait 1.86204
+953760
+72
+[1] Neurons in container 1367, synapses num 191850, virtual synapses: 61700
+Timing: time = 0.376
+[0] Neurons in container 11637, synapses num 279300, virtual synapses: 55100
+[2] Neurons in container 10840, synapses num 350350, virtual synapses: 98950
+1 sim 0.572207
+1 wait 1.8174
+0 sim 1.01213
+0 wait 1.27635
+2 sim 1.19694
+2 wait 1.04249
+953760
+72
+[1] Neurons in container 1257, synapses num 307350, virtual synapses: 74850
+Timing: time = 0.368
+[0] Neurons in container 20979, synapses num 149350, virtual synapses: 128850
+[2] Neurons in container 1608, synapses num 364800, virtual synapses: 72750
+0 sim 1.23891
+0 wait 2.06698
+2 sim 1.01178
+2 wait 2.05237
+1 sim 0.809971
+1 wait 2.59773
+953760
+72
+[1] Neurons in container 20688, synapses num 284400, virtual synapses: 69650
+Timing: time = 0.371
+[0] Neurons in container 1355, synapses num 191150, virtual synapses: 69800
+[2] Neurons in container 1801, synapses num 345950, virtual synapses: 95900
+2 sim 1.14716
+2 wait 2.20096
+1 sim 1.03497
+1 wait 1.76936
+0 sim 0.830266
+0 wait 2.38229
+953760
+72
+[1] Neurons in container 11412, synapses num 130650, virtual synapses: 171650
+Timing: time = 0.389
+[0] Neurons in container 1113, synapses num 143400, virtual synapses: 27350
+[2] Neurons in container 11319, synapses num 547450, virtual synapses: 85900
+1 sim 1.12109
+1 wait 1.62279
+0 sim 0.604984
+0 wait 2.2595
+2 sim 1.45385
+2 wait 1.35258
+953760
+72
+[1] Neurons in container 10739, synapses num 347700, virtual synapses: 103800
+Timing: time = 0.444
+[0] Neurons in container 1407, synapses num 191450, virtual synapses: 46900
+[2] Neurons in container 11698, synapses num 282350, virtual synapses: 62400
+1 sim 1.09489
+1 wait 0.937877
+2 sim 0.943068
+2 wait 1.29768
+0 sim 0.791239
+0 wait 1.27054
+953760
+72
+[1] Neurons in container 12115, synapses num 220850, virtual synapses: 95200
+Timing: time = 0.381
+[0] Neurons in container 10259, synapses num 286550, virtual synapses: 82400
+[2] Neurons in container 1470, synapses num 314100, virtual synapses: 83150
+1 sim 0.846475
+1 wait 1.15722
+2 sim 0.946032
+2 wait 1.12761
+0 sim 0.837377
+0 wait 1.28751
+953760
+72
+[1] Neurons in container 683, synapses num 75350, virtual synapses: 44350
+Timing: time = 0.368
+[0] Neurons in container 21706, synapses num 520000, virtual synapses: 57550
+[2] Neurons in container 1455, synapses num 226150, virtual synapses: 90950
+0 sim 1.38322
+0 wait 1.34798
+2 sim 1.23812
+2 wait 1.5259
+1 sim 0.493459
+1 wait 2.31351
+953760
+72
+[1] Neurons in container 1388, synapses num 179000, virtual synapses: 61700
+Timing: time = 0.440
+[0] Neurons in container 11814, synapses num 289700, virtual synapses: 81700
+[2] Neurons in container 10642, synapses num 352800, virtual synapses: 103550
+1 sim 0.665553
+1 wait 2.03935
+2 sim 1.21579
+2 wait 1.39159
+0 sim 0.763593
+0 wait 2.09953
+953760
+72
+[1] Neurons in container 1601, synapses num 380250, virtual synapses: 87000
+Timing: time = 0.481
+[0] Neurons in container 21325, synapses num 183350, virtual synapses: 163000
+[2] Neurons in container 918, synapses num 257900, virtual synapses: 84200
+2 sim 0.690845
+2 wait 2.37379
+0 sim 1.44891
+0 wait 1.66661
+1 sim 1.03621
+1 wait 2.1235
+953760
+72
+Timing: time = 0.363
+[0] Neurons in container 1246, synapses num 321600, virtual synapses: 92150
+[2] Neurons in container 1407, synapses num 191450, virtual synapses: 46900
+[1] Neurons in container 21191, synapses num 308450, virtual synapses: 96800
+1 sim 1.10235
+1 wait 1.03456
+2 sim 0.554613
+2 wait 1.5301
+0 sim 0.702315
+0 wait 1.35358
+953760
+72
+[1] Neurons in container 1377, synapses num 180950, virtual synapses: 57100
+Timing: time = 0.448
+[0] Neurons in container 11817, synapses num 309800, virtual synapses: 68400
+[2] Neurons in container 10650, synapses num 330750, virtual synapses: 98450
+1 sim 0.50821
+1 wait 2.03708
+2 sim 0.973501
+2 wait 1.68126
+0 sim 0.882788
+0 wait 1.61323
+953760
+72
+[1] Neurons in container 11784, synapses num 279200, virtual synapses: 74850
+Timing: time = 0.471
+[0] Neurons in container 1607, synapses num 223950, virtual synapses: 71700
+[2] Neurons in container 10453, synapses num 318350, virtual synapses: 100800
+1 sim 0.994335
+1 wait 2.43338
+2 sim 1.47457
+2 wait 1.98014
+0 sim 1.12155
+0 wait 2.29467
+953760
+72
+[1] Neurons in container 10700, synapses num 348250, virtual synapses: 113600
+Timing: time = 0.365
+[0] Neurons in container 1377, synapses num 183450, virtual synapses: 59400
+[2] Neurons in container 11767, synapses num 289800, virtual synapses: 109850
+1 sim 0.874531
+1 wait 0.897248
+2 sim 0.637629
+2 wait 1.45613
+0 sim 0.728662
+0 wait 1.31876
+953760
+72
+[1] Neurons in container 1166, synapses num 148950, virtual synapses: 37050
+Timing: time = 0.371
+[0] Neurons in container 12280, synapses num 343800, virtual synapses: 87150
+[2] Neurons in container 10398, synapses num 328750, virtual synapses: 89800
+1 sim 0.529824
+1 wait 2.14083
+2 sim 1.8008
+2 wait 0.893729
+0 sim 1.15117
+0 wait 1.80445
+953760
+72
+[1] Neurons in container 1253, synapses num 436450, virtual synapses: 57800
+Timing: time = 0.389
+[0] Neurons in container 1614, synapses num 228700, virtual synapses: 101550
+[2] Neurons in container 20977, synapses num 156350, virtual synapses: 130950
+1 sim 0.280602
+1 wait 1.76467
+2 sim 1.09839
+2 wait 1.02254
+0 sim 0.906674
+0 wait 1.19965
+953760
+72
+[1] Neurons in container 11964, synapses num 312200, virtual synapses: 88100
+Timing: time = 0.472
+[0] Neurons in container 1577, synapses num 213450, virtual synapses: 76900
+[2] Neurons in container 10303, synapses num 295850, virtual synapses: 93500
+2 sim 0.6467
+2 wait 2.20778
+0 sim 0.851719
+0 wait 1.7646
+1 sim 1.24512
+1 wait 1.43555
+953760
+72
+[1] Neurons in container 783, synapses num 80350, virtual synapses: 44350
+Timing: time = 0.354
+[0] Neurons in container 21460, synapses num 360900, virtual synapses: 108950
+[2] Neurons in container 1601, synapses num 380250, virtual synapses: 67200
+2 sim 2.2377
+2 wait 0.975539
+0 sim 1.45155
+0 wait 1.08673
+1 sim 0.525564
+1 wait 2.60691
+953760
+72
+[1] Neurons in container 1303, synapses num 443950, virtual synapses: 60300
+Timing: time = 0.372
+[0] Neurons in container 20626, synapses num 103500, virtual synapses: 103900
+[2] Neurons in container 1915, synapses num 274050, virtual synapses: 98750
+0 sim 1.08714
+0 wait 1.47671
+1 sim 0.390285
+1 wait 2.44649
+2 sim 1.08884
+2 wait 1.71677
+953760
+72
+[1] Neurons in container 11072, synapses num 414100, virtual synapses: 120250
+Timing: time = 0.416
+[0] Neurons in container 884, synapses num 105500, virtual synapses: 51850
+[2] Neurons in container 11888, synapses num 301900, virtual synapses: 104050
+2 sim 0.666148
+2 wait 1.29854
+0 sim 0.468993
+0 wait 1.28783
+1 sim 0.954017
+1 wait 1.07801
+953760
+72
+[1] Neurons in container 20978, synapses num 161650, virtual synapses: 133850
+Timing: time = 0.368
+[0] Neurons in container 1357, synapses num 307350, virtual synapses: 94800
+[2] Neurons in container 1509, synapses num 352500, virtual synapses: 77500
+1 sim 1.04175
+1 wait 2.50943
+0 sim 0.842707
+0 wait 2.77354
+2 sim 1.82542
+2 wait 1.75741
+953760
+72
+[1] Neurons in container 1405, synapses num 208650, virtual synapses: 91500
+Timing: time = 0.362
+[0] Neurons in container 10802, synapses num 336050, virtual synapses: 93350
+[2] Neurons in container 11637, synapses num 276800, virtual synapses: 55100
+0 sim 1.06998
+0 wait 0.823146
+1 sim 0.574116
+1 wait 1.27394
+2 sim 0.506097
+2 wait 1.26112
+953760
+72
+[1] Neurons in container 21510, synapses num 365900, virtual synapses: 118350
+Timing: time = 0.415
+[0] Neurons in container 664, synapses num 101350, virtual synapses: 76350
+[2] Neurons in container 1670, synapses num 354250, virtual synapses: 57450
+1 sim 3.16896
+1 wait 1.18072
+2 sim 1.59743
+2 wait 2.3557
+0 sim 0.803125
+0 wait 3.57798
+953760
+72
+[1] Neurons in container 1402, synapses num 352900, virtual synapses: 74600
+Timing: time = 0.398
+[0] Neurons in container 11637, synapses num 276800, virtual synapses: 55100
+[2] Neurons in container 10805, synapses num 191800, virtual synapses: 137200
+0 sim 0.643083
+0 wait 1.36197
+1 sim 1.00764
+1 wait 1.06004
+2 sim 0.938139
+2 wait 0.99999
+953760
+72
+[1] Neurons in container 12080, synapses num 313800, virtual synapses: 77350
+Timing: time = 0.370
+[0] Neurons in container 1407, synapses num 191450, virtual synapses: 47300
+[2] Neurons in container 10357, synapses num 316250, virtual synapses: 90000
+2 sim 0.76341
+2 wait 0.73101
+0 sim 0.66652
+0 wait 0.786355
+1 sim 0.597134
+1 wait 0.930043
+953760
+72
+[1] Neurons in container 1353, synapses num 187950, virtual synapses: 41950
+Timing: time = 0.510
+[0] Neurons in container 1340, synapses num 319100, virtual synapses: 112000
+[2] Neurons in container 21151, synapses num 314450, virtual synapses: 120700
+2 sim 1.69653
+2 wait 1.64003
+0 sim 1.08028
+0 wait 2.19464
+1 sim 1.03566
+1 wait 2.29474
+953760
+72
+[1] Neurons in container 10455, synapses num 313650, virtual synapses: 95900
+Timing: time = 0.361
+[0] Neurons in container 11984, synapses num 309200, virtual synapses: 79850
+[2] Neurons in container 1405, synapses num 198650, virtual synapses: 64650
+1 sim 0.973803
+1 wait 2.53195
+0 sim 1.02404
+0 wait 2.31286
+2 sim 0.550517
+2 wait 2.71427
+953760
+72
+[1] Neurons in container 21010, synapses num 295700, virtual synapses: 111750
+Timing: time = 0.374
+[0] Neurons in container 1257, synapses num 312350, virtual synapses: 93650
+[2] Neurons in container 1577, synapses num 213450, virtual synapses: 76500
+1 sim 1.40231
+1 wait 2.00967
+0 sim 0.879798
+0 wait 2.24961
+2 sim 1.0611
+2 wait 2.11186
+953760
+72
+[1] Neurons in container 21021, synapses num 288950, virtual synapses: 108550
+Timing: time = 0.371
+[0] Neurons in container 1501, synapses num 207650, virtual synapses: 69100
+[2] Neurons in container 1322, synapses num 324900, virtual synapses: 113850
+0 sim 0.941974
+0 wait 1.49086
+2 sim 1.55062
+2 wait 0.732092
+1 sim 1.12065
+1 wait 1.16184
+953760
+72
+[1] Neurons in container 1800, synapses num 394900, virtual synapses: 50050
+Timing: time = 0.437
+[0] Neurons in container 20807, synapses num 137300, virtual synapses: 127200
+[2] Neurons in container 1237, synapses num 289300, virtual synapses: 74700
+1 sim 1.66193
+1 wait 1.9076
+2 sim 0.589383
+2 wait 2.95629
+0 sim 1.14772
+0 wait 2.41141
+953760
+72
+[1] Neurons in container 11935, synapses num 301850, virtual synapses: 75800
+Timing: time = 0.376
+[0] Neurons in container 10354, synapses num 303500, virtual synapses: 93450
+[2] Neurons in container 1555, synapses num 216150, virtual synapses: 64700
+0 sim 0.91517
+0 wait 1.97541
+2 sim 0.507941
+2 wait 2.18722
+1 sim 1.09013
+1 wait 2.00897
+953760
+72
+[1] Neurons in container 1844, synapses num 229900, virtual synapses: 157450
+Timing: time = 0.452
+[0] Neurons in container 20768, synapses num 286500, virtual synapses: 93150
+[2] Neurons in container 1232, synapses num 305100, virtual synapses: 59650
+1 sim 1.26806
+1 wait 1.07403
+2 sim 1.10836
+2 wait 1.19533
+0 sim 0.9586
+0 wait 1.3471
+953760
+72
+[1] Neurons in container 1703, synapses num 513950, virtual synapses: 45350
+Timing: time = 0.367
+[0] Neurons in container 20814, synapses num 131600, virtual synapses: 140550
+[2] Neurons in container 1327, synapses num 175950, virtual synapses: 54400
+1 sim 2.90486
+1 wait 1.15213
+2 sim 0.578494
+2 wait 3.28598
+0 sim 1.31299
+0 wait 2.34714
+953760
+72
+[1] Neurons in container 10454, synapses num 313500, virtual synapses: 95950
+Timing: time = 0.364
+[0] Neurons in container 1426, synapses num 195800, virtual synapses: 79450
+[2] Neurons in container 11964, synapses num 312200, virtual synapses: 88100
+1 sim 1.10074
+1 wait 2.18338
+2 sim 1.30736
+2 wait 1.29021
+0 sim 0.890162
+0 wait 2.25228
+953760
+72
+[1] Neurons in container 1458, synapses num 332700, virtual synapses: 69950
+Timing: time = 0.407
+[0] Neurons in container 20626, synapses num 103500, virtual synapses: 103900
+[2] Neurons in container 1760, synapses num 385300, virtual synapses: 60200
+0 sim 1.06978
+0 wait 1.65042
+2 sim 1.2618
+2 wait 1.54264
+1 sim 1.24191
+1 wait 1.54359
+953760
+72
+[1] Neurons in container 1454, synapses num 211000, virtual synapses: 83850
+Timing: time = 0.379
+[0] Neurons in container 20538, synapses num 261900, virtual synapses: 62150
+[2] Neurons in container 1852, synapses num 348600, virtual synapses: 95850
+0 sim 0.774977
+0 wait 1.75289
+2 sim 1.18416
+2 wait 1.78993
+1 sim 0.964817
+1 wait 1.88742
+953760
+72
+[1] Neurons in container 11737, synapses num 291800, virtual synapses: 57600
+Timing: time = 0.377
+[0] Neurons in container 10652, synapses num 323550, virtual synapses: 90850
+[2] Neurons in container 1455, synapses num 206150, virtual synapses: 69650
+1 sim 0.684196
+1 wait 1.56314
+0 sim 1.04006
+0 wait 1.3358
+2 sim 0.494418
+2 wait 1.88978
+953760
+72
+[1] Neurons in container 1915, synapses num 261550, virtual synapses: 98750
+Timing: time = 0.412
+[0] Neurons in container 11391, synapses num 239850, virtual synapses: 42400
+[2] Neurons in container 10538, synapses num 320100, virtual synapses: 91000
+1 sim 1.18064
+1 wait 1.31681
+0 sim 0.598464
+0 wait 2.19522
+2 sim 0.690207
+2 wait 1.80813
+953760
+72
+[1] Neurons in container 10502, synapses num 291050, virtual synapses: 83850
+Timing: time = 0.367
+[0] Neurons in container 1455, synapses num 211150, virtual synapses: 69250
+[2] Neurons in container 11887, synapses num 319300, virtual synapses: 69700
+1 sim 0.861851
+1 wait 2.33911
+0 sim 0.958511
+0 wait 1.793
+2 sim 1.56298
+2 wait 1.4572
+953760
+72
+[1] Neurons in container 1427, synapses num 190950, virtual synapses: 49400
+Timing: time = 0.368
+[0] Neurons in container 21260, synapses num 330900, virtual synapses: 99150
+[2] Neurons in container 1157, synapses num 299650, virtual synapses: 85150
+1 sim 0.544706
+1 wait 1.10656
+2 sim 0.692261
+2 wait 0.979378
+0 sim 1.1947
+0 wait 0.675792
+953760
+72
+[1] Neurons in container 1453, synapses num 478950, virtual synapses: 52850
+Timing: time = 0.486
+[0] Neurons in container 21225, synapses num 193700, virtual synapses: 177450
+[2] Neurons in container 1166, synapses num 148850, virtual synapses: 24800
+1 sim 1.0549
+1 wait 1.63244
+2 sim 0.471103
+2 wait 1.84214
+0 sim 1.56267
+0 wait 0.86688
+953760
+72
+[1] Neurons in container 10157, synapses num 286250, virtual synapses: 85000
+Timing: time = 0.390
+[0] Neurons in container 1856, synapses num 225600, virtual synapses: 135800
+[2] Neurons in container 11831, synapses num 309650, virtual synapses: 54400
+1 sim 0.515848
+1 wait 1.43678
+2 sim 0.702003
+2 wait 1.19732
+0 sim 1.1832
+0 wait 0.832924
+953760
+72
+[1] Neurons in container 1851, synapses num 397750, virtual synapses: 62250
+Timing: time = 0.485
+[0] Neurons in container 1368, synapses num 320400, virtual synapses: 135700
+[2] Neurons in container 20625, synapses num 103350, virtual synapses: 103950
+2 sim 1.3882
+2 wait 1.53011
+0 sim 1.09029
+0 wait 1.63279
+1 sim 1.28783
+1 wait 1.74719
+953760
+72
+[1] Neurons in container 1303, synapses num 443950, virtual synapses: 60300
+Timing: time = 0.421
+[0] Neurons in container 20626, synapses num 103500, virtual synapses: 103900
+[2] Neurons in container 1915, synapses num 274050, virtual synapses: 98750
+1 sim 0.392728
+1 wait 2.46051
+0 sim 1.08976
+0 wait 2.02101
+2 sim 1.10427
+2 wait 1.41555
+953760
+72
+[1] Neurons in container 10652, synapses num 316050, virtual synapses: 85850
+Timing: time = 0.361
+[0] Neurons in container 11837, synapses num 306800, virtual synapses: 60100
+[2] Neurons in container 1355, synapses num 198650, virtual synapses: 71700
+1 sim 0.641971
+1 wait 2.67233
+0 sim 0.956224
+0 wait 1.87321
+2 sim 0.79059
+2 wait 2.13643
+953760
+72
+[1] Neurons in container 10503, synapses num 298700, virtual synapses: 90600
+Timing: time = 0.415
+[0] Neurons in container 1454, synapses num 211000, virtual synapses: 86150
+[2] Neurons in container 11887, synapses num 311800, virtual synapses: 79300
+1 sim 0.918849
+1 wait 2.86662
+2 sim 2.52558
+2 wait 1.27317
+0 sim 1.15542
+0 wait 2.55296
+953760
+72
+[1] Neurons in container 11984, synapses num 451000, virtual synapses: 53050
+Timing: time = 0.377
+[0] Neurons in container 1004, synapses num 168500, virtual synapses: 95900
+[2] Neurons in container 10856, synapses num 202000, virtual synapses: 127200
+1 sim 1.2739
+1 wait 1.14141
+0 sim 0.843197
+0 wait 1.74159
+2 sim 0.90474
+2 wait 1.53875
+953760
+72
+[1] Neurons in container 11787, synapses num 299300, virtual synapses: 60100
+Timing: time = 0.396
+[0] Neurons in container 11023, synapses num 401700, virtual synapses: 135200
+[2] Neurons in container 1034, synapses num 120500, virtual synapses: 110700
+0 sim 1.13919
+0 wait 0.759922
+2 sim 0.686859
+2 wait 1.55043
+1 sim 0.584151
+1 wait 1.65483

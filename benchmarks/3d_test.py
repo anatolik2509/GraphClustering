@@ -6,6 +6,7 @@ from benchmarks.benchmark_test import run_test
 from core.core import Core
 from crawler.docker_power_calculator import DockerPowerCalculator
 from crawler.ssh_remote_executor import SshConfig
+from esrn_simulating.esrn_code_generator import EsrnCodeGenerator
 from esrn_simulating.izh_code_generator import IzhCodeGenerator
 from graphs import graph_generator, graph_utils
 from esrn_simulating import esrn_topology_constructor
@@ -52,7 +53,7 @@ def test(hosts, nodes, edges):
     g = graph_utils.add_random_weights_to_edges(g, 50, 100)
     topology = graph_to_topology(g)
     computing_power_calculator = DockerPowerCalculator()
-    code_generator = IzhCodeGenerator()
+    code_generator = EsrnCodeGenerator()
     algorithm = WeightedFluidClusteringAlgorithm()
     core = Core(configs, algorithm, code_generator, computing_power_calculator)
     elapsed_time, sim_elapsed_time, data = run_test(core, topology, tries)
@@ -64,7 +65,7 @@ if __name__ == '__main__':
     host_num = range(1, 9)
     node_num = range(10, 110, 10)
     edge_num = [int(n * 1.2) for n in node_num]
-    file = "res/3d/data.csv"
+    file = "res/3d/data_esrn.csv"
     data = []
     for hosts in host_num:
         for nodes, edges in zip(node_num, edge_num):
