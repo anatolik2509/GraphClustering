@@ -3,6 +3,7 @@ from benchmarks.utils import write_time_to_file, write_logs_to_file
 from core.core import Core
 from crawler.docker_power_calculator import DockerPowerCalculator
 from crawler.ssh_remote_executor import SshConfig
+from esrn_simulating import esrn_topology_constructor
 from esrn_simulating.izh_code_generator import IzhCodeGenerator
 from esrn_simulating.main import create_reflect_arc
 from graphs.fast_greedy_algorithm import FastGreedyClusteringAlgorithm
@@ -36,3 +37,4 @@ if __name__ == '__main__':
         file = f'res/1_1_1/{algorithm_name}_izh_reflect_arc.csv'
         log_file = f'res/1_1_1/{algorithm_name}_izh_reflect_arc.txt'
         run_algorithm(algorithm_object, create_reflect_arc(), file, log_file)
+        esrn_topology_constructor.clean()
