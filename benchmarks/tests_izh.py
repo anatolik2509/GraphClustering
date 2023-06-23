@@ -12,9 +12,9 @@ from graphs.walktrap_clustering_algorithm import WalktrapClusteringAlgorithm
 from graphs.weighted_fluid_clustering_algorithm import WeightedFluidClusteringAlgorithm
 
 
-def test_algorithm(algorithm, topology, file_name, logs_file):
+def run_algorithm(algorithm, topology, file_name, logs_file):
     print(f'Running test for {algorithm.__class__.__name__}')
-    tries = 50
+    tries = 5
     configs = [SshConfig('172.17.0.2', user='anatoly', password=''),
                SshConfig('172.17.0.3', user='anatoly', password=''),
                SshConfig('172.17.0.4', user='anatoly', password='')]
@@ -35,4 +35,4 @@ if __name__ == '__main__':
     for algorithm_object, algorithm_name in zip(algorithm_objects, algorithm_names):
         file = f'res/1_1_1/{algorithm_name}_izh_reflect_arc.csv'
         log_file = f'res/1_1_1/{algorithm_name}_izh_reflect_arc.txt'
-        test_algorithm(algorithm_object, create_reflect_arc(), file, log_file)
+        run_algorithm(algorithm_object, create_reflect_arc(), file, log_file)

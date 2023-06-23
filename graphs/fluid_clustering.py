@@ -16,7 +16,7 @@ def fluid_communities(graph: nx.Graph, weights: list, max_iter=100):
     node_to_partitions = {}
     partitions = [[] for _ in range(k)]
     volumes = [w * total_weight for w in weights]
-    start_nodes = random.sample(graph.nodes, k)
+    start_nodes = random.sample(list(graph.nodes), k)
     for i, node in enumerate(start_nodes):
         node_to_partitions[node] = i
     density = __calculate_density(graph, node_to_partitions, volumes)

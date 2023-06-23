@@ -1,3 +1,4 @@
+import os
 import pathlib
 import shutil
 from typing import Dict, List
@@ -17,6 +18,7 @@ class EsrnCodeGenerator(CodeGenerator):
 
     def generate_script(self, topology: nx.Graph, clustering_info: Dict[int, int],
                         node_configs: List[SshConfig]) -> (str, List[pathlib.Path]):
+        os.makedirs(os.path.dirname('out/'), exist_ok=True)
         with open('out/rank_file.txt', 'w') as rank_file:
             for i, node_info in enumerate(node_configs):
                 rank_file.write(f'rank {i}={node_info.host} slots=2\n')

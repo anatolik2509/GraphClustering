@@ -8,6 +8,7 @@ from crawler.docker_power_calculator import DockerPowerCalculator
 from crawler.ssh_remote_executor import SshConfig
 from esrn_simulating import esrn_topology_constructor
 from esrn_simulating.esrn_code_generator import EsrnCodeGenerator
+from esrn_simulating.izh_code_generator import IzhCodeGenerator
 from esrn_simulating.utils import to_data_set, draw_nuclei
 from graphs.fluid_clustering_algorithm import FluidClusteringAlgorithm
 from graphs.spin_glass_clustering_algorithm import SpinGlassClusteringAlgorithm
@@ -219,18 +220,16 @@ def create_reflect_arc():
 
 if __name__ == '__main__':
     topology = create_reflect_arc()
-    configs = [SshConfig('172.17.0.2', user='anatoly', password=''),
-               SshConfig('172.17.0.3', user='anatoly', password=''),
-               SshConfig('172.17.0.4', user='anatoly', password='')]
+    configs = [SshConfig('172.17.0.2', user='anatoly', password='')]
 
     clustering_algorithm = WalktrapClusteringAlgorithm()
     # clustering_algorithm = WeightedFluidClusteringAlgorithm()
     computing_power_calculator = DockerPowerCalculator()
-    code_generator = EsrnCodeGenerator(1000)
+    code_generator = IzhCodeGenerator(1000)
     core = Core(configs, clustering_algorithm, code_generator, computing_power_calculator)
     process = core.execute(topology)
-    print('starting')
     start = time.time()
+    print('starting')
     stdout = process.stdout
     lines = []
     while True:
